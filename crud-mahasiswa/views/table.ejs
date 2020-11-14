@@ -1,0 +1,72 @@
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"> -->
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-info btn-sm"
+      data-toggle="modal"
+      data-target="#add-modal"
+      style="font-weight: bolder;"
+    >
+      Tambah Data Mahasiswa
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead style="background-color: #1a1a1a; color: #fff;">
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NPM</th>
+            <th>Jurusan</th>
+            <th>Alamat</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < mahasiswa.length; i++){ %>
+              <tr>
+                <td><%= i +1 %></td>
+                <td><%= mahasiswa[i].nama %></td>
+                <td><%= mahasiswa[i].nim %></td>
+                <td><%= mahasiswa[i].jurusan %></td>
+                <td><%= mahasiswa[i].alamat %></td>
+                <td class="text-center">
+                  <form action="/mahasiswa/<%= mahasiswa[i].id %>?_method=DELETE" method="POST">
+                  <a href="javascript:void()"
+                  class="btn btn-outline-primary btn-sm button-update"
+                  style="font-weight: bolder;"
+                  data-id="<%= mahasiswa[i].id %>"
+                  data-nama="<%= mahasiswa[i].nama %>"
+                  data-nim="<%= mahasiswa[i].nim %>"
+                  data-jurusan="<%= mahasiswa[i].jurusan %>"
+                  data-alamat="<%= mahasiswa[i].alamat %>""
+                    >Ubah</a
+                  >
+                  <button type="submit" class="btn btn-outline-danger btn-sm" 
+                  onclick="return confirm('Hapus data mahasiswa?');">
+                    Hapus
+                  </button>
+                  </form>
+                </td>
+              </tr>
+              <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<!-- <script src="jquery.js"></script> -->
+<!-- <script src="pagination.js"></script> -->
